@@ -10,33 +10,69 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ChildSafetyPolicyRouteImport } from './routes/child-safety-policy'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
+import { Route as UserAgreementRouteImport } from './routes/user-agreement'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ChildSafetyPolicyRoute = ChildSafetyPolicyRouteImport.update({
+  id: '/child-safety-policy',
+  path: '/child-safety-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UserAgreementRoute = UserAgreementRouteImport.update({
+  id: '/user-agreement',
+  path: '/user-agreement',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/child-safety-policy': typeof ChildSafetyPolicyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/user-agreement': typeof UserAgreementRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/child-safety-policy': typeof ChildSafetyPolicyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/user-agreement': typeof UserAgreementRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/child-safety-policy': typeof ChildSafetyPolicyRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
+  '/user-agreement': typeof UserAgreementRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/child-safety-policy' | '/privacy-policy' | '/user-agreement'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/child-safety-policy' | '/privacy-policy' | '/user-agreement'
+  id:
+    | '__root__'
+    | '/'
+    | '/child-safety-policy'
+    | '/privacy-policy'
+    | '/user-agreement'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChildSafetyPolicyRoute: typeof ChildSafetyPolicyRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
+  UserAgreementRoute: typeof UserAgreementRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +84,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/child-safety-policy': {
+      id: '/child-safety-policy'
+      path: '/child-safety-policy'
+      fullPath: '/child-safety-policy'
+      preLoaderRoute: typeof ChildSafetyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/user-agreement': {
+      id: '/user-agreement'
+      path: '/user-agreement'
+      fullPath: '/user-agreement'
+      preLoaderRoute: typeof UserAgreementRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChildSafetyPolicyRoute: ChildSafetyPolicyRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
+  UserAgreementRoute: UserAgreementRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
