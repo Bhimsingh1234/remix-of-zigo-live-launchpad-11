@@ -14,7 +14,114 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      onboarding_requests: {
+        Row: {
+          admin_note: string | null
+          agency_name: string | null
+          city: string | null
+          company_name: string | null
+          country: string
+          created_at: string
+          current_platform: string | null
+          description: string
+          email: string
+          expected_monthly_business: string | null
+          experience: string | null
+          full_name: string
+          hear_about_zigo: string | null
+          id: string
+          investment_capacity: string | null
+          landing_page: string | null
+          mobile_number: string
+          number_of_hosts: number | null
+          partner_type: string | null
+          payment_business_details: string | null
+          referrer: string | null
+          social_media: string | null
+          state: string
+          status: Database["public"]["Enums"]["onboarding_request_status"]
+          submission_fingerprint: string
+          type: Database["public"]["Enums"]["onboarding_request_type"]
+          updated_at: string
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          website: string | null
+          whatsapp_number: string
+        }
+        Insert: {
+          admin_note?: string | null
+          agency_name?: string | null
+          city?: string | null
+          company_name?: string | null
+          country: string
+          created_at?: string
+          current_platform?: string | null
+          description: string
+          email: string
+          expected_monthly_business?: string | null
+          experience?: string | null
+          full_name: string
+          hear_about_zigo?: string | null
+          id?: string
+          investment_capacity?: string | null
+          landing_page?: string | null
+          mobile_number: string
+          number_of_hosts?: number | null
+          partner_type?: string | null
+          payment_business_details?: string | null
+          referrer?: string | null
+          social_media?: string | null
+          state: string
+          status?: Database["public"]["Enums"]["onboarding_request_status"]
+          submission_fingerprint: string
+          type: Database["public"]["Enums"]["onboarding_request_type"]
+          updated_at?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          website?: string | null
+          whatsapp_number: string
+        }
+        Update: {
+          admin_note?: string | null
+          agency_name?: string | null
+          city?: string | null
+          company_name?: string | null
+          country?: string
+          created_at?: string
+          current_platform?: string | null
+          description?: string
+          email?: string
+          expected_monthly_business?: string | null
+          experience?: string | null
+          full_name?: string
+          hear_about_zigo?: string | null
+          id?: string
+          investment_capacity?: string | null
+          landing_page?: string | null
+          mobile_number?: string
+          number_of_hosts?: number | null
+          partner_type?: string | null
+          payment_business_details?: string | null
+          referrer?: string | null
+          social_media?: string | null
+          state?: string
+          status?: Database["public"]["Enums"]["onboarding_request_status"]
+          submission_fingerprint?: string
+          type?: Database["public"]["Enums"]["onboarding_request_type"]
+          updated_at?: string
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          website?: string | null
+          whatsapp_number?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +130,12 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      onboarding_request_status:
+        | "PENDING"
+        | "REVIEWING"
+        | "APPROVED"
+        | "REJECTED"
+      onboarding_request_type: "USER" | "HOST" | "PARTNER" | "SELLER" | "AGENCY"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +262,14 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      onboarding_request_status: [
+        "PENDING",
+        "REVIEWING",
+        "APPROVED",
+        "REJECTED",
+      ],
+      onboarding_request_type: ["USER", "HOST", "PARTNER", "SELLER", "AGENCY"],
+    },
   },
 } as const
