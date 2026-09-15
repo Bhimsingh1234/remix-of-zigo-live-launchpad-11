@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   ArrowRight, BadgeDollarSign, CheckCircle2, CirclePlay, Clock3, Download, Gift,
-  Heart, Headphones, Menu, MessageCircle, PhoneCall, Radio, ShieldCheck, Sparkles,
+  Heart, Menu, MessageCircle, Radio, ShieldCheck, Sparkles,
   Star, TrendingUp, UserPlus, Users, Video, WalletCards, X, Zap,
 } from "lucide-react";
 
@@ -43,11 +43,12 @@ const features = [
 
 const benefits = [[Clock3,"24/7 Community"],[Zap,"Real-time Connections"],[CirclePlay,"Live Entertainment"],[TrendingUp,"Earn & Grow"]] as const;
 
-function StoreButton({ store, href = PLAY_URL }: { store: "Apple" | "Google"; href?: string }) {
-  return <a href={href} target="_blank" rel="noreferrer" className="store-button" aria-label={store === "Google" ? "Get Zigo Live on Google Play" : "Download Zigo Live on the App Store"}>
+function StoreButton({ store, href }: { store: "Apple" | "Google"; href?: string }) {
+  const content = <>
     {store === "Google" ? <CirclePlay className="size-7 text-accent-foreground" /> : <span className="text-2xl">●</span>}
     <span><small>{store === "Google" ? "GET IT ON" : "Download on the"}</small><strong>{store === "Google" ? "Google Play" : "App Store"}</strong></span>
-  </a>;
+  </>;
+  return href ? <a href={href} target="_blank" rel="noreferrer" className="store-button" aria-label="Get Zigo Live on Google Play">{content}</a> : <span className="store-button opacity-70" aria-label="Zigo Live for iOS coming soon">{content}</span>;
 }
 
 function Index() {
@@ -76,7 +77,7 @@ function Index() {
             <div className="eyebrow"><span className="size-2 rounded-full bg-live shadow-live" /> LIVE • CONNECT • GROW</div>
             <h1 className="mt-7 text-5xl font-black leading-[0.98] sm:text-6xl lg:text-7xl">Go Live.<br/><span className="text-gradient">Connect.</span><br/>Grow.</h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">Zigo Live brings people closer through live streaming, real-time chat, audio &amp; video calls, virtual gifts and more. Meet new people, build connections and be part of a growing community.</p>
-            <div className="mt-8 grid max-w-lg gap-3 sm:grid-cols-2"><StoreButton store="Apple" href="mailto:stackearn@gmail.com?subject=Zigo%20Live%20for%20iOS" /><StoreButton store="Google" /></div>
+            <div className="mt-8 grid max-w-lg gap-3 sm:grid-cols-2"><StoreButton store="Apple" /><StoreButton store="Google" href={PLAY_URL} /></div>
             <div className="mt-7 flex items-center gap-3 text-sm text-muted-foreground"><div className="flex -space-x-2">{["ZA","RO","AN","PR"].map((name) => <span key={name} className="avatar-mini">{name}</span>)}</div><span>Join a growing global community</span></div>
           </div>
           <div className="relative mx-auto aspect-square w-full max-w-[640px] animate-float-soft" aria-label="Zigo Live app preview">
@@ -91,7 +92,7 @@ function Index() {
 
       <section id="features" className="section-shell">
         <div className="section-heading"><span className="eyebrow">BUILT FOR EVERY CONNECTION</span><h2>Everything You Need to <span className="text-gradient">Connect, Go Live &amp; Grow</span></h2><p>Purpose-built tools for a lively, rewarding and connected community.</p></div>
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{features.map(([Icon,title,description], index) => <article key={title} className="feature-card" style={{ animationDelay: `${index * 50}ms` }}><div className="icon-tile"><Icon /></div><h3>{title}</h3><p>{description}</p></article>)}</div>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{features.map(([Icon,title,description]) => <article key={title} className="feature-card"><div className="icon-tile"><Icon /></div><h3>{title}</h3><p>{description}</p></article>)}</div>
       </section>
 
       <section id="join" className="section-shell pt-10">
